@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require('express');
+const connectDb = require('./db/db');
 const app = express();
-const mongoose = require('mongoose');
-
+app.use(express.json());
+connectDb();
 
 const userRouter  = require('./routes/users');
 const authRouter = require('./routes/auth');

@@ -13,11 +13,14 @@ router.post('/login', (req,res)=>{
 	if (password !== user.password){
 		return res.status(401).json({err: "Wrong password" });
 	}	
-	
 		
 	const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN)		
 	res.json({ accessToken: accessToken }) 	
 })
+
+router.get('/validate', authMiddleware, (req, res) => {
+	res.json(req.user);
+});
 
 
 module.export = router
